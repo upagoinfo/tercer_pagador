@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conciliador Pro - Módulo de Cartola Bancaria</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f3f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-100 flex flex-col text-slate-800">
+
+    <!-- ========================================================= -->
+    <!-- BARRA SUPERIOR DE LA PLATAFORMA (COLOR CLARO PREMIUM)    -->
+    <!-- ========================================================= -->
+    <header class="bg-white text-slate-800 h-14 px-6 flex items-center justify-between border-b border-slate-200 shadow-sm z-40 shrink-0">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded bg-emerald-500 flex items-center justify-center text-slate-950 font-black text-sm shadow-sm">
+                CB
+            </div>
+            <div>
+                <span class="font-bold text-sm tracking-wide text-slate-900 block">CONCILIADOR PRO</span>
+                <span class="text-[10px] text-slate-500 block uppercase font-bold tracking-wider">Consola de Control Bancario</span>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <button class="p-1.5 text-slate-500 hover:text-slate-800 rounded-lg hover:bg-slate-100 transition-all relative">
+                <i data-lucide="bell" class="w-4 h-4"></i>
+                <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-emerald-500 rounded-full"></span>
+            </button>
+            <button class="p-1.5 text-slate-500 hover:text-slate-800 rounded-lg hover:bg-slate-100 transition-all">
+                <i data-lucide="settings" class="w-4 h-4"></i>
+            </button>
+            <div class="h-6 w-[1px] bg-slate-200"></div>
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-xs font-bold text-emerald-600">
+                    MF
+                </div>
+                <div class="hidden md:block">
+                    <span class="text-xs font-bold text-slate-800 block">Mauricio Fuentes</span>
+                    <span class="text-[9px] text-slate-500 block font-medium">Supervisor Operaciones</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        
+        <!-- ========================================================= -->
+        <!-- SIDEBAR LATERAL NATIVO (Estilo capturas de pantalla)     -->
+        <!-- ========================================================= -->
+        <aside class="w-64 bg-[#1e1e24] text-[#b5b5be] flex-shrink-0 flex flex-col border-r border-slate-800 hidden lg:flex">
+            
+            <div class="p-4 border-b border-slate-800/60 bg-slate-950/20 text-xs flex items-center justify-between">
+                <span class="font-semibold text-slate-400">OPERADOR ACTIVO</span>
+                <span class="bg-emerald-500/10 text-emerald-400 text-[10px] px-2 py-0.5 rounded font-bold border border-emerald-500/20">ONLINE</span>
+            </div>
+
+            <div class="flex-1 overflow-y-auto py-4 space-y-6">
+                
+                <!-- Sección: Resultados de Cobranza -->
+                <div>
+                    <span class="px-4 text-[11px] font-bold tracking-wider text-slate-500 uppercase block mb-2">Resultados de Cobranza</span>
+                    <ul class="space-y-1 text-xs">
+                        <li>
+                            <a href="#resultados" class="px-4 py-2 hover:bg-slate-800/50 flex items-center gap-2.5 transition-colors">
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                Resultados de Cobranza
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#reporte-cobranza" class="px-4 py-2 hover:bg-slate-800/50 flex items-center gap-2.5 transition-colors">
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                Reporte de Cobranza
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Sección: Rendiciones y Abonos -->
+                <div>
+                    <span class="px-4 text-[11px] font-bold tracking-wider text-slate-500 uppercase block mb-2">Rendiciones y Abonos</span>
+                    <ul class="space-y-1 text-xs">
+                        <li>
+                            <a href="#rendiciones" class="px-4 py-2 hover:bg-slate-800/50 flex items-center gap-2.5 transition-colors">
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                Rendiciones Diarias
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#abonos" class="px-4 py-2 hover:bg-slate-800/50 flex items-center gap-2.5 transition-colors">
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                Abonos de Dinero
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#cuotas" class="px-4 py-2 hover:bg-slate-800/50 flex items-center gap-2.5 transition-colors">
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                Cuotas Futuras a Rendir
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Sección: Conciliación de Pagos en Bancos -->
+                <div>
+                    <span class="px-4 text-[11px] font-bold tracking-wider text-slate-500 uppercase block mb-2">Conciliación de pagos en bancos</span>
+                    <ul class="space-y-1 text-xs">
+                        <li>
+                            <a href="#cartola" class="px-4 py-2.5 bg-emerald-600 text-slate-950 font-bold flex items-center justify-between transition-colors rounded-r-lg mr-2 shadow-sm">
+                                <span class="flex items-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-slate-950"></span>
+                                    Cartola (Buscador)
+                                </span>
+                                <span class="bg-slate-950/20 text-[9px] px-1.5 py-0.5 rounded text-slate-950 font-black">ACTIVO</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#carga" class="px-4 py-2 hover:bg-slate-800/50 flex items-center gap-2.5 transition-colors">
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                Carga Manual de Cartola
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#cuentas" class="px-4 py-2 hover:bg-slate-800/50 flex items-center gap-2.5 transition-colors">
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                Cuentas bancarias
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#rut-pagador" class="px-4 py-2 hover:bg-slate-800/50 flex items-center justify-between gap-2 transition-colors">
+                                <span class="flex items-center gap-2.5">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                    Rut pagador
+                                </span>
+                                <span class="bg-emerald-500/20 text-emerald-400 text-[9px] px-1.5 rounded font-semibold">Nuevo</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#lista" class="px-4 py-2 hover:bg-slate-800/50 flex items-center gap-2.5 transition-colors">
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                Lista negra
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#reportes" class="px-4 py-2 hover:bg-slate-800/50 flex items-center gap-2.5 transition-colors">
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                Reporte conciliación bancaria
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Sección: Gestión de Cobros -->
+                <div>
+                    <span class="px-4 text-[11px] font-bold tracking-wider text-slate-500 uppercase block mb-2">Gestión de Cobros</span>
+                    <ul class="space-y-1 text-xs">
+                        <li>
+                            <a href="#fichas" class="px-4 py-2 hover:bg-slate-800/50 flex items-center gap-2.5 transition-colors">
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                Ficha de Clientes
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#conceptos" class="px-4 py-2 hover:bg-slate-800/50 flex items-center gap-2.5 transition-colors">
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                Conceptos de Consumos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#consumos" class="px-4 py-2 hover:bg-slate-800/50 flex items-center gap-2.5 transition-colors">
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                Consumos de Clientes
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#cargas" class="px-4 py-2 hover:bg-slate-800/50 flex items-center gap-2.5 transition-colors">
+                                <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                                Carga Masiva de Deudas
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="p-4 border-t border-slate-800 text-[10px] text-slate-500 bg-slate-950/10 mt-auto">
+                <span class="block font-semibold">Cliente Corporativo:</span>
+                <span class="text-slate-400 truncate block">Distribuidora Alimentaria Chile</span>
+            </div>
+        </aside>
+
+        <!-- ========================================================= -->
+        <!-- ÁREA DE CONTENIDO PRINCIPAL                               -->
+        <!-- ========================================================= -->
+        <main class="flex-1 overflow-y-auto p-6 bg-[#f8f9fa] flex flex-col justify-between">
+          
+            <div>
+                <!-- Breadcrumbs y Título -->
+                <div class="flex items-center justify-between mb-5">
+                    <div class="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                        <span class="text-slate-400">CONCILIACIÓN BANCARIA</span>
+                        <span>/</span>
+                        <span class="text-slate-800 font-bold">Cartola</span>
+                    </div>
+                    <span class="text-xs text-slate-400">Periodo Contable: <strong class="text-slate-600">Mayo 2026</strong></span>
+                </div>
+
+                <!-- ========================================================= -->
+                <!-- PANEL DE BÚSQUEDA Y FILTRADO RETRÁCTIL                    -->
+                <!-- ========================================================= -->
+                <div class="bg-white rounded-lg shadow-sm border border-slate-200 mb-6 overflow-hidden">
+                    
+                    <!-- Gatillo / Encabezado de Colapso -->
+                    <button 
+                        id="btn-toggle-filters"
+                        class="w-full px-6 py-4 flex items-center justify-between bg-slate-50 hover:bg-slate-100/70 transition-colors border-b border-slate-200 text-left focus:outline-none"
+                    >
+                        <div class="flex items-center gap-2.5">
+                            <i data-lucide="sliders" class="w-4 h-4 text-slate-500"></i>
+                            <div>
+                                <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Filtros Avanzados y de Identificación</span>
+                                <span id="filter-badge" class="ml-3 text-[10px] bg-slate-200 text-slate-600 font-semibold px-2 py-0.5 rounded-full">
+                                    Búsqueda limpia
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span id="toggle-text" class="text-xs text-slate-500 font-semibold">Contraer Filtros</span>
+                            <i id="chevron-icon" data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-200 rotate-180"></i>
+                        </div>
+                    </button>
+
+                    <!-- Contenido Retráctil del Panel -->
+                    <div id="search-panel-content" class="p-6 transition-all duration-200">
+                        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                            
+                            <!-- Bloque Izquierdo: RUT Cliente y Fechas -->
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                                    <div class="md:col-span-1">
+                                        <label class="text-xs font-bold text-slate-700 block uppercase">RUT Cliente Titular:</label>
+                                        <input 
+                                            type="text" 
+                                            id="input-rut-cliente"
+                                            placeholder="Ej: 78857440-1"
+                                            class="mt-1 w-full p-2 border border-slate-300 rounded text-xs focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none font-mono"
+                                        />
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="text-xs font-bold text-slate-700 block uppercase">Fecha desde:</label>
+                                        <input 
+                                            type="text" 
+                                            value="01-05-2026" 
+                                            class="mt-1 w-full p-2 border border-slate-300 rounded text-xs bg-slate-50 text-slate-500 font-mono"
+                                            disabled
+                                        />
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="text-xs font-bold text-slate-700 block uppercase">Fecha hasta:</label>
+                                        <input 
+                                            type="text" 
+                                            value="31-05-2026" 
+                                            class="mt-1 w-full p-2 border border-slate-300 rounded text-xs bg-slate-50 text-slate-500 font-mono"
+                                            disabled
+                                        />
+                                    </div>
+                                </div>
+
+                                <!-- Sub-Sección: Detalle Bancario -->
+                                <div class="border-t border-dashed border-slate-200 pt-4">
+                                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Identificación Bancaria</h4>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="text-xs text-slate-600 block">Monto desde:</label>
+                                            <input type="text" placeholder="Ej: $100.000" class="mt-1 w-full p-2 border border-slate-300 rounded text-xs" />
+                                        </div>
+                                        <div>
+                                            <label class="text-xs text-slate-600 block">Monto hasta:</label>
+                                            <input type="text" placeholder="Ej: $5.000.000" class="mt-1 w-full p-2 border border-slate-300 rounded text-xs" />
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+                                        <div>
+                                            <label class="text-xs text-slate-600 block">Bancos:</label>
+                                            <select class="mt-1 w-full p-2 border border-slate-300 rounded text-xs bg-white">
+                                                <option>Todos</option>
+                                                <option>Banco de Chile</option>
+                                                <option>Santander</option>
+                                                <option>BCI</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="text-xs text-slate-600 block">Cuenta Bancaria Destino:</label>
+                                            <select class="mt-1 w-full p-2 border border-slate-300 rounded text-xs bg-white font-mono">
+                                                <option>Todos (Cta 928146792)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Bloque Central e Izquierdo: Gestión Operativa -->
+                            <div class="xl:col-span-2 space-y-4">
+                                <div class="flex justify-between items-center pb-2 border-b border-dashed border-slate-200">
+                                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Gestión Operativa</h4>
+                                    <span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded flex items-center gap-1 font-semibold">
+                                        <i data-lucide="sliders" class="w-3 h-3"></i> Configuración de Filtros
+                                    </span>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div>
+                                        <label class="text-xs font-bold text-slate-700 block uppercase">Estado Conciliación:</label>
+                                        <select 
+                                            id="select-estado-conciliado"
+                                            class="mt-1 w-full p-2 border border-slate-300 rounded text-xs bg-white"
+                                        >
+                                            <option value="Todos">Todos</option>
+                                            <option value="Conciliado">Conciliado</option>
+                                            <option value="No Conciliado">No Conciliado / Sin Match</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label class="text-xs font-bold text-slate-700 block uppercase">Deudas Pendientes:</label>
+                                        <select class="mt-1 w-full p-2 border border-slate-300 rounded text-xs bg-white">
+                                            <option>Todos</option>
+                                            <option>Con Deudas</option>
+                                            <option>Sin Deudas</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- FILTRO NATIVO: Origen de Fondos -->
+                                    <div>
+                                        <label class="text-xs font-bold text-slate-850 block uppercase flex items-center gap-1">
+                                            <span>Origen del Pago:</span>
+                                        </label>
+                                        <select 
+                                            id="select-origen-pago"
+                                            class="mt-1 w-full p-2 border border-emerald-300 bg-emerald-50/20 rounded text-xs font-semibold text-slate-700 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                                        >
+                                            <option value="todos">Todos los Orígenes</option>
+                                            <option value="solo_titulares">Solo Titulares (Directo)</option>
+                                            <option value="solo_terceros">Solo Terceros Pagadores (Asociados)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div>
+                                        <label class="text-xs font-bold text-slate-700 block uppercase">Margen Tolerancia:</label>
+                                        <select class="mt-1 w-full p-2 border border-slate-300 rounded text-xs bg-white">
+                                            <option>Todos</option>
+                                            <option>Bajo</option>
+                                            <option>Alto</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label class="text-xs font-bold text-slate-700 block uppercase">Centro de Distribución:</label>
+                                        <select class="mt-1 w-full p-2 border border-slate-300 rounded text-xs bg-white">
+                                            <option>Todos</option>
+                                            <option>Centro Santiago Norte</option>
+                                            <option>Bodega Concepción</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- CAMPO NATIVO: RUT Tercero Pagador -->
+                                    <div class="bg-slate-50/50 p-2 rounded-lg border border-slate-200">
+                                        <label class="text-xs font-bold text-slate-800 block uppercase">
+                                            RUT Tercero Pagador:
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="input-rut-tercero"
+                                            placeholder="Buscar por RUT pagador..."
+                                            class="mt-1 w-full p-1.5 border border-slate-300 rounded text-xs outline-none focus:ring-1 focus:ring-emerald-500 bg-white font-mono"
+                                        />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Botonera del Buscador -->
+                        <div class="flex justify-end gap-3 mt-6 pt-4 border-t border-slate-200">
+                            <button 
+                                id="btn-limpiar"
+                                class="px-5 py-2 border border-slate-300 text-slate-600 rounded font-bold text-xs hover:bg-slate-50 transition-colors uppercase"
+                            >
+                                Limpiar Filtros
+                            </button>
+                            <button 
+                                id="btn-buscar"
+                                class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded font-bold text-xs shadow-sm transition-colors uppercase tracking-wider"
+                            >
+                                Aplicar Búsqueda
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========================================================= -->
+                <!-- TABLA DE RESULTADOS DE CARTOLA                            -->
+                <!-- ========================================================= -->
+                <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                    
+                    <!-- Cabecera Técnica de Tabla -->
+                    <div class="p-4 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Cartola de Movimientos Bancarios</span>
+                            <span id="table-count-badge" class="bg-slate-200 text-slate-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
+                                8 Registros
+                            </span>
+                        </div>
+
+                        <!-- Herramientas de Exportación -->
+                        <div class="flex items-center gap-2">
+                            <button class="p-1.5 bg-white border border-slate-200 hover:bg-slate-50 rounded flex items-center gap-1.5 text-xs text-emerald-700 font-bold shadow-sm transition-colors">
+                                <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
+                                <span class="hidden sm:inline">Exportar Excel</span>
+                            </button>
+
+                            <button class="p-1.5 bg-white border border-slate-200 hover:bg-slate-50 rounded flex items-center gap-1.5 text-xs text-slate-700 font-bold shadow-sm transition-colors">
+                                <i data-lucide="download" class="w-4 h-4 text-slate-400"></i>
+                                <span class="hidden sm:inline">CSV</span>
+                            </button>
+
+                            <!-- Menú de Columnas -->
+                            <div class="relative">
+                                <button 
+                                    id="btn-column-dropdown"
+                                    class="p-1.5 bg-white border border-slate-200 hover:bg-slate-50 rounded flex items-center gap-1.5 text-xs text-slate-700 font-medium shadow-sm transition-colors"
+                                >
+                                    <i data-lucide="columns" class="w-4 h-4 text-slate-400"></i>
+                                    <span>Configurar Columnas</span>
+                                    <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400"></i>
+                                </button>
+
+                                <div 
+                                    id="column-dropdown-menu" 
+                                    class="absolute right-0 mt-1 w-60 bg-white border border-slate-200 rounded-lg shadow-lg z-30 p-3 text-xs text-slate-700 space-y-2 hidden"
+                                >
+                                    <div class="font-bold pb-2 border-b border-slate-100 flex justify-between items-center">
+                                        <span>Columnas Activas</span>
+                                        <button id="btn-close-cols" class="text-[10px] text-blue-600 font-bold hover:underline">Listo</button>
+                                    </div>
+                                    
+                                    <label class="flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-50 rounded">
+                                        <input type="checkbox" id="col-fMovimiento" checked class="rounded text-emerald-500 focus:ring-emerald-500" />
+                                        <span>F. Movimiento</span>
+                                    </label>
+
+                                    <label class="flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-50 rounded">
+                                        <input type="checkbox" id="col-detalle" checked class="rounded text-emerald-500 focus:ring-emerald-500" />
+                                        <span>Glosa Banco</span>
+                                    </label>
+
+                                    <label class="flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-50 rounded">
+                                        <input type="checkbox" id="col-movBancario" checked class="rounded text-emerald-500 focus:ring-emerald-500" />
+                                        <span>Mov. Bancario</span>
+                                    </label>
+
+                                    <label class="flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-50 rounded">
+                                        <input type="checkbox" id="col-transaccion" checked class="rounded text-emerald-500 focus:ring-emerald-500" />
+                                        <span>Transacción ID</span>
+                                    </label>
+
+                                    <label class="flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-50 rounded">
+                                        <input type="checkbox" id="col-usuarioConciliador" checked class="rounded text-emerald-500 focus:ring-emerald-500" />
+                                        <span>Operador Conciliador</span>
+                                    </label>
+
+                                    <label class="flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-50 rounded">
+                                        <input type="checkbox" id="col-tipo" checked class="rounded text-emerald-500 focus:ring-emerald-500" />
+                                        <span>Tipo Conciliación</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabla Técnica de Cartola -->
+                    <div class="overflow-x-auto w-full">
+                        <table class="w-full text-left border-collapse" id="table-movimientos">
+                            <thead class="bg-[#f1f3f5] border-b border-slate-200 text-slate-700 text-xs font-bold uppercase select-none">
+                                <tr>
+                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap">Cta. Bancaria</th>
+                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap th-fMovimiento">F. Movimiento <i data-lucide="arrow-up-down" class="inline w-3 h-3 text-slate-400"></i></th>
+                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap">F. Contable</th>
+                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] text-right whitespace-nowrap" align="center">Monto</th>
+                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap th-detalle" align="center">RUT</th>
+                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap bg-emerald-50/55 text-slate-900 font-bold">RUT Asociado / Deudor</th>
+                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap th-movBancario">Mov. Bancario</th>
+                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap th-transaccion">Transacción ID</th>
+                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap th-usuarioConciliador">Conciliador</th>
+                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap th-tipo">Tipo</th>
+                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] text-center whitespace-nowrap">Deudas Pend.</th>
+                                    <th class="py-3 px-4 text-center text-[11px]">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body" class="text-xs text-slate-600 divide-y divide-slate-100 bg-white">
+                                <!-- Filas dinámicas generadas mediante JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Paginador -->
+                    <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                        <div id="pagination-text">
+                            Mostrando registros del 1 al 8.
+                        </div>
+                        <div class="flex gap-1">
+                            <button class="px-2.5 py-1 border border-slate-200 rounded bg-white text-slate-400 cursor-not-allowed">Anterior</button>
+                            <button class="px-3 py-1 border border-emerald-500 rounded bg-emerald-500 text-slate-950 font-bold">1</button>
+                            <button class="px-2.5 py-1 border border-slate-200 rounded bg-white hover:bg-slate-50 text-slate-700">Siguiente</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- PANEL DE AUDITORÍA DETALLADA                              -->
+            <div class="mt-6 bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <i data-lucide="file-text" class="w-4 h-4 text-slate-400"></i>
+                    Auditoría y Trazabilidad de Movimientos Bancarios
+                </h4>
+
+                <div id="audit-panel-container">
+                    <!-- Se llena dinámicamente según la fila seleccionada -->
+                    <div class="text-center py-6 text-slate-400 bg-slate-50 rounded-lg border border-slate-150 text-xs">
+                        <i data-lucide="help-circle" class="w-8 h-8 text-slate-300 mx-auto mb-2"></i>
+                        <span>Selecciona una fila de la tabla o haz clic en "Ver" para desplegar la trazabilidad técnica de fondos.</span>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- LÓGICA JAVASCRIPT DE LA DEMO                              -->
+    <!-- ========================================================= -->
+    <script>
+        // --- DATA DE LA DEMO ---
+        const INITIAL_TRANSACTIONS = [
+            {
+                id: 1,
+                ctaBancaria: "928146792",
+                fMovimiento: "19-05-2026 23:31",
+                fContable: "20-05-2026",
+                monto: 443226,
+                detalle: "10067217-0",
+                rutCliente: "10067217-0",
+                nombreCliente: "Mauricio Fuentes",
+                esTercero: false,
+                rutTercero: null,
+                nombreTercero: null,
+                movBancario: "11682601232334",
+                transaccion: "20260520154213836C542043",
+                usuarioConciliador: "mauricio fuentes",
+                tipo: "CONCILIACIÓN POR USUARIO",
+                deudasPendientes: 0,
+                codTransportista: "7038531",
+                comentario: "Pago regular vía transferencia directa"
+            },
+            {
+                id: 2,
+                ctaBancaria: "928146792",
+                fMovimiento: "14-05-2026 23:31",
+                fContable: "15-05-2026",
+                monto: 4000000,
+                detalle: "78857440-1",
+                rutCliente: "78857440-1",
+                nombreCliente: "Comercializadora San José",
+                esTercero: true,
+                rutTercero: "15385972-K",
+                nombreTercero: "Inversiones El Roble Ltda",
+                movBancario: "11682601232334",
+                transaccion: "20260515162600541C543546",
+                usuarioConciliador: "SISTEMA",
+                tipo: "CONCILIACIÓN AUTOMÁTICA",
+                deudasPendientes: 9,
+                codTransportista: "7040458",
+                comentario: "Tercero pagador consolidado por holding de empresas"
+            },
+            {
+                id: 3,
+                ctaBancaria: "928146792",
+                fMovimiento: "14-05-2026 18:15",
+                fContable: "15-05-2026",
+                monto: 1540000,
+                detalle: "17311428-1",
+                rutCliente: "17311428-1",
+                nombreCliente: "Agropecuaria del Sur",
+                esTercero: false,
+                rutTercero: null,
+                nombreTercero: null,
+                movBancario: "11682601232355",
+                transaccion: "20260515164041826C543546",
+                usuarioConciliador: "SISTEMA",
+                tipo: "CONCILIACIÓN AUTOMÁTICA",
+                deudasPendientes: 9,
+                codTransportista: "7040590",
+                comentario: "Pago calzado por monto exacto"
+            },
+            {
+                id: 4,
+                ctaBancaria: "928146792",
+                fMovimiento: "13-05-2026 23:31",
+                fContable: "14-05-2026",
+                monto: 2200000,
+                detalle: "78857440-1",
+                rutCliente: "78857440-1",
+                nombreCliente: "Comercializadora San José",
+                esTercero: true,
+                rutTercero: "93122480-2",
+                nombreTercero: "Asesorías Contables Rentas S.A.",
+                movBancario: "11682601232334",
+                transaccion: "20260514143623408C543546",
+                usuarioConciliador: "SISTEMA",
+                tipo: "CONCILIACIÓN AUTOMÁTICA",
+                deudasPendientes: 9,
+                codTransportista: "7040590",
+                comentario: "Pago de factura mediante RUT de contador o tercero"
+            },
+            {
+                id: 5,
+                ctaBancaria: "928146792",
+                fMovimiento: "04-05-2026 23:31",
+                fContable: "05-05-2026",
+                monto: 7900,
+                detalle: "15385972-K",
+                rutCliente: "15385972-K",
+                nombreCliente: "Inversiones El Roble Ltda",
+                esTercero: false,
+                rutTercero: null,
+                nombreTercero: null,
+                movBancario: "11682601232334",
+                transaccion: "SIN MATCH",
+                usuarioConciliador: "--",
+                tipo: "--",
+                deudasPendientes: 0,
+                codTransportista: "--",
+                comentario: "Diferencia menor en tipo de cambio"
+            },
+            {
+                id: 6,
+                ctaBancaria: "928146792",
+                fMovimiento: "04-05-2026 12:10",
+                fContable: "05-05-2026",
+                monto: 1052445,
+                detalle: "17311428-1",
+                rutCliente: "17311428-1",
+                nombreCliente: "Agropecuaria del Sur",
+                esTercero: true,
+                rutTercero: "81552900-3",
+                nombreTercero: "Transportes Valparaíso S.A.",
+                movBancario: "11682601232334",
+                transaccion: "SIN MATCH",
+                usuarioConciliador: "--",
+                tipo: "--",
+                deudasPendientes: 2,
+                codTransportista: "--",
+                comentario: "Pago de flete realizado por transportista asociado"
+            },
+            {
+                id: 7,
+                ctaBancaria: "928146792",
+                fMovimiento: "04-05-2026 09:15",
+                fContable: "05-05-2026",
+                monto: 10000,
+                detalle: "13091270-2",
+                rutCliente: "13091270-2",
+                nombreCliente: "Patricio Almonacid",
+                esTercero: false,
+                rutTercero: null,
+                nombreTercero: null,
+                movBancario: "11682601232334",
+                transaccion: "SIN MATCH",
+                usuarioConciliador: "--",
+                tipo: "--",
+                deudasPendientes: 0,
+                codTransportista: "--",
+                comentario: "Abono menor sin registrar en deudas"
+            },
+            {
+                id: 8,
+                ctaBancaria: "928146792",
+                fMovimiento: "02-05-2026 14:20",
+                fContable: "03-05-2026",
+                monto: 850000,
+                detalle: "18224901-K",
+                rutCliente: "18224901-K",
+                nombreCliente: "Sofía Vergara",
+                esTercero: true,
+                rutTercero: "76112940-8",
+                nombreTercero: "Sociedad Educacional del Maipo",
+                movBancario: "11682609823412",
+                transaccion: "20260503124510342C998243",
+                usuarioConciliador: "mauricio fuentes",
+                tipo: "CONCILIACIÓN POR USUARIO",
+                deudasPendientes: 1,
+                codTransportista: "7038112",
+                comentario: "Beca / Pago de tercero por colegiatura"
+            }
+        ];
+
+        // --- ESTADO GLOBAL ---
+        let selectedRowId = null;
+        let isSearchPanelExpanded = true;
+        let showColumnDropdown = false;
+
+        const columnsState = {
+            fMovimiento: true,
+            detalle: true,
+            movBancario: true,
+            transaccion: true,
+            usuarioConciliador: true,
+            tipo: true
+        };
+
+        // --- ELEMENTOS DOM ---
+        const btnToggleFilters = document.getElementById('btn-toggle-filters');
+        const searchPanelContent = document.getElementById('search-panel-content');
+        const toggleText = document.getElementById('toggle-text');
+        const chevronIcon = document.getElementById('chevron-icon');
+        const filterBadge = document.getElementById('filter-badge');
+
+        const inputRutCliente = document.getElementById('input-rut-cliente');
+        const inputRutTercero = document.getElementById('input-rut-tercero');
+        const selectEstadoConciliado = document.getElementById('select-estado-conciliado');
+        const selectOrigenPago = document.getElementById('select-origen-pago');
+
+        const btnLimpiar = document.getElementById('btn-limpiar');
+        const btnBuscar = document.getElementById('btn-buscar');
+
+        const tableBody = document.getElementById('table-body');
+        const tableCountBadge = document.getElementById('table-count-badge');
+        const paginationText = document.getElementById('pagination-text');
+        const auditPanelContainer = document.getElementById('audit-panel-container');
+
+        const btnColumnDropdown = document.getElementById('btn-column-dropdown');
+        const columnDropdownMenu = document.getElementById('column-dropdown-menu');
+        const btnCloseCols = document.getElementById('btn-close-cols');
+
+        // --- CONFIGURACIÓN DE ESCUCHAS DE EVENTOS ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initApp();
+        });
+
+        function initApp() {
+            // Colapso de panel de filtros
+            btnToggleFilters.addEventListener('click', toggleSearchPanel);
+
+            // Buscador e inputs
+            btnBuscar.addEventListener('click', () => {
+                applyFilters();
+                // Opcional: Colapsar tras buscar para optimizar espacio en pantallas pequeñas
+                if (window.innerWidth < 1280) {
+                    toggleSearchPanel();
+                }
+            });
+            btnLimpiar.addEventListener('click', clearFilters);
+
+            // Dropdown de Columnas
+            btnColumnDropdown.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showColumnDropdown = !showColumnDropdown;
+                columnDropdownMenu.classList.toggle('hidden', !showColumnDropdown);
+            });
+            btnCloseCols.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showColumnDropdown = false;
+                columnDropdownMenu.classList.add('hidden');
+            });
+            document.addEventListener('click', () => {
+                showColumnDropdown = false;
+                columnDropdownMenu.classList.add('hidden');
+            });
+            columnDropdownMenu.addEventListener('click', (e) => e.stopPropagation());
+
+            // Eventos Checkboxes de Columnas
+            Object.keys(columnsState).forEach(colKey => {
+                const chk = document.getElementById(`col-${colKey}`);
+                if (chk) {
+                    chk.addEventListener('change', (e) => {
+                        columnsState[colKey] = e.target.checked;
+                        updateColumnsVisibility();
+                    });
+                }
+            });
+
+            // Carga inicial
+            applyFilters();
+            lucide.createIcons();
+        }
+
+        // --- LÓGICA DE CONTROL ---
+        function toggleSearchPanel() {
+            isSearchPanelExpanded = !isSearchPanelExpanded;
+            searchPanelContent.classList.toggle('hidden', !isSearchPanelExpanded);
+            toggleText.textContent = isSearchPanelExpanded ? 'Contraer Filtros' : 'Desplegar Filtros';
+            
+            if (isSearchPanelExpanded) {
+                chevronIcon.classList.add('rotate-180');
+            } else {
+                chevronIcon.classList.remove('rotate-180');
+            }
+        }
+
+        function clearFilters() {
+            inputRutCliente.value = '';
+            inputRutTercero.value = '';
+            selectEstadoConciliado.value = 'Todos';
+            selectOrigenPago.value = 'todos';
+            selectedRowId = null;
+            applyFilters();
+        }
+
+        function formatCLP(amount) {
+            return new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(amount);
+        }
+
+        function applyFilters() {
+            const rutClienteVal = inputRutCliente.value.trim().toLowerCase();
+            const rutTerceroVal = inputRutTercero.value.trim().toLowerCase();
+            const estadoConciliadoVal = selectEstadoConciliado.value;
+            const origenPagoVal = selectOrigenPago.value;
+
+            // Calcular conteo de filtros activos
+            let activeCount = 0;
+            if (rutClienteVal) activeCount++;
+            if (rutTerceroVal) activeCount++;
+            if (estadoConciliadoVal !== 'Todos') activeCount++;
+            if (origenPagoVal !== 'todos') activeCount++;
+
+            // Actualizar Badge de filtros
+            if (activeCount > 0) {
+                filterBadge.className = "ml-3 text-[10px] bg-blue-100 text-blue-700 font-bold px-2 py-0.5 rounded-full";
+                filterBadge.textContent = `${activeCount} ${activeCount === 1 ? 'filtro activo' : 'filtros activos'}`;
+            } else {
+                filterBadge.className = "ml-3 text-[10px] bg-slate-200 text-slate-600 font-semibold px-2 py-0.5 rounded-full";
+                filterBadge.textContent = "Búsqueda limpia";
+            }
+
+            // Filtrar Array
+            const filtered = INITIAL_TRANSACTIONS.filter(item => {
+                if (rutClienteVal && !item.rutCliente.toLowerCase().includes(rutClienteVal)) {
+                    return false;
+                }
+                if (rutTerceroVal && (!item.rutTercero || !item.rutTercero.toLowerCase().includes(rutTerceroVal))) {
+                    return false;
+                }
+                if (origenPagoVal === 'solo_terceros' && !item.esTercero) return false;
+                if (origenPagoVal === 'solo_titulares' && item.esTercero) return false;
+
+                if (estadoConciliadoVal === 'Conciliado' && item.transaccion === 'SIN MATCH') return false;
+                if (estadoConciliadoVal === 'No Conciliado' && item.transaccion !== 'SIN MATCH') return false;
+
+                return true;
+            });
+
+            renderTable(filtered);
+            updateColumnsVisibility();
+        }
+
+        function renderTable(data) {
+            tableBody.innerHTML = '';
+            tableCountBadge.textContent = `${data.length} Registros`;
+            paginationText.textContent = `Mostrando registros del 1 al ${data.length} de un total de ${INITIAL_TRANSACTIONS.length}.`;
+
+            if (data.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colSpan="12" class="py-12 text-center text-slate-400 bg-slate-50">
+                            <div class="flex flex-col items-center justify-center">
+                                <i data-lucide="alert-circle" class="w-8 h-8 text-slate-300 mb-2"></i>
+                                <span>No se encontraron movimientos conciliados para los criterios ingresados.</span>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                lucide.createIcons();
+                renderAuditPanel(); // Limpia panel de auditoría
+                return;
+            }
+
+            data.forEach(tx => {
+                const tr = document.createElement('tr');
+                tr.className = `hover:bg-slate-50/85 transition-colors cursor-pointer border-b border-slate-100 ${selectedRowId === tx.id ? 'bg-blue-50/60 border-l-4 border-l-blue-600' : ''}`;
+                
+                // Escuchador de clics en la fila para auditar
+                tr.addEventListener('click', () => {
+                    selectRow(tx.id);
+                });
+
+                // Render tipo badge
+                let tipoBadgeHTML = '--';
+                if (tx.tipo !== '--') {
+                    if (tx.tipo === 'CONCILIACIÓN AUTOMÁTICA') {
+                        tipoBadgeHTML = `
+                            <span class="text-emerald-700 font-bold flex items-center gap-1 bg-emerald-50 px-2 py-0.5 rounded w-fit text-[9px] border border-emerald-100">
+                                <i data-lucide="check-circle-2" class="w-3 h-3 text-emerald-600"></i> AUTOMÁTICA
+                            </span>
+                        `;
+                    } else {
+                        tipoBadgeHTML = `
+                            <span class="text-blue-700 font-bold flex items-center gap-1 bg-blue-50 px-2 py-0.5 rounded w-fit text-[9px] border border-blue-100">
+                                MANUAL
+                            </span>
+                        `;
+                    }
+                }
+
+                // Render Transaccion badge
+                const transaccionHTML = tx.transaccion === 'SIN MATCH' 
+                    ? `<span class="bg-rose-50 text-rose-700 text-[10px] px-2 py-0.5 rounded font-bold uppercase border border-rose-200">Sin Match</span>`
+                    : `<span class="font-mono text-slate-600 text-[11px] block truncate max-w-[110px]">${tx.transaccion}</span>`;
+
+                // Render de la Propuesta Integradora (Celda Dual)
+                let cellDualRUT = '';
+                if (tx.esTercero) {
+                    cellDualRUT = `
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-mono font-bold text-slate-900">${tx.rutCliente}</span>
+                            <span class="bg-purple-100 text-purple-700 text-[9px] px-1.5 py-0.5 rounded-md font-bold border border-purple-200 flex items-center gap-0.5 shadow-sm uppercase tracking-tight">
+                                <i data-lucide="briefcase" class="w-2.5 h-2.5"></i>
+                                Tercero
+                            </span>
+                        </div>
+                        <div class="mt-1 bg-purple-50/50 p-1 rounded border border-purple-100">
+                            <div class="text-[10px] text-purple-950 font-bold flex items-center gap-1">
+                                <span class="text-[8px] text-purple-500 uppercase font-black">Pagado por:</span> 
+                                <span class="font-mono">${tx.rutTercero}</span>
+                            </div>
+                            <div class="text-[9px] text-purple-700 truncate max-w-[190px]">
+                                ${tx.nombreTercero}
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    cellDualRUT = `
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-mono font-bold text-slate-900">${tx.rutCliente}</span>
+                        </div>
+                        <span class="text-[10px] text-slate-400 block truncate max-w-[190px]">
+                            ${tx.nombreCliente} (Titular)
+                        </span>
+                    `;
+                }
+
+                // Armado del HTML interno de la fila
+                tr.innerHTML = `
+                    <td class="py-3.5 px-4 font-mono text-slate-500 whitespace-nowrap">${tx.ctaBancaria}</td>
+                    <td class="py-3.5 px-4 text-slate-500 whitespace-nowrap font-mono col-fMovimiento">${tx.fMovimiento}</td>
+                    <td class="py-3.5 px-4 text-slate-500 whitespace-nowrap font-mono">${tx.fContable}</td>
+                    <td class="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">${formatCLP(tx.monto)}</td>
+                    <td class="py-3.5 px-4 font-mono text-slate-500 whitespace-nowrap col-detalle">${tx.detalle}</td>
+                    <td class="py-3.5 px-4 bg-emerald-50/10">${cellDualRUT}</td>
+                    <td class="py-3.5 px-4 font-mono text-slate-500 whitespace-nowrap text-xs col-movBancario">${tx.movBancario}</td>
+                    <td class="py-3.5 px-4 whitespace-nowrap col-transaccion">${transaccionHTML}</td>
+                    <td class="py-3.5 px-4 text-slate-600 font-medium whitespace-nowrap col-usuarioConciliador">${tx.usuarioConciliador}</td>
+                    <td class="py-3.5 px-4 text-xs whitespace-nowrap col-tipo">${tipoBadgeHTML}</td>
+                    <td class="py-3.5 px-4 text-center">
+                        <span class="inline-block w-6 py-0.5 rounded-full text-[11px] font-bold ${tx.deudasPendientes > 0 ? 'bg-amber-100 text-amber-800 border border-amber-200' : 'bg-slate-100 text-slate-400'}">
+                            ${tx.deudasPendientes}
+                        </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center">
+                        <button class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded text-[10px] transition-all flex items-center gap-1 mx-auto border border-slate-200">
+                            <i data-lucide="eye" class="w-3 h-3 text-slate-500"></i>
+                            <span>Ver</span>
+                        </button>
+                    </td>
+                `;
+
+                tableBody.appendChild(tr);
+            });
+
+            lucide.createIcons();
+        }
+
+        function selectRow(id) {
+            selectedRowId = id;
+            
+            // Re-renderizar filas para actualizar el estilo "Selected"
+            const rows = tableBody.querySelectorAll('tr');
+            const dataFiltered = INITIAL_TRANSACTIONS; // Para simplificar
+            
+            applyFilters(); // Esto re-renderizará con el row activo seleccionado.
+            renderAuditPanel(id);
+        }
+
+        function renderAuditPanel(id = null) {
+            if (!id) {
+                auditPanelContainer.innerHTML = `
+                    <div class="text-center py-6 text-slate-400 bg-slate-50 rounded-lg border border-slate-150 text-xs">
+                        <i data-lucide="help-circle" class="w-8 h-8 text-slate-300 mx-auto mb-2"></i>
+                        <span>Selecciona una fila de la tabla o haz clic en "Ver" para desplegar la trazabilidad técnica de fondos.</span>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            const tx = INITIAL_TRANSACTIONS.find(t => t.id === id);
+            if (!tx) return;
+
+            const relaciónHTML = tx.esTercero 
+                ? `
+                    <span class="text-[10px] text-purple-700 font-bold block flex items-center gap-1">
+                        ⚠️ Pagado por Tercero (Pagador Externo)
+                    </span>
+                    <span class="font-bold text-slate-800 block">${tx.nombreTercero}</span>
+                    <span class="font-mono text-[10px] text-slate-500 block">RUT: ${tx.rutTercero}</span>
+                `
+                : `
+                    <span class="text-[10px] text-slate-500 block font-bold uppercase tracking-wider">
+                        👤 Pagado Directamente por el Cliente
+                    </span>
+                    <span class="font-bold text-slate-800 block">${tx.nombreCliente}</span>
+                    <span class="font-mono text-[10px] text-slate-500 block">RUT: ${tx.rutCliente}</span>
+                `;
+
+            auditPanelContainer.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 text-xs animate-fadeIn">
+                    
+                    <!-- Tarjeta de Resumen General -->
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[9px] text-slate-400 block font-bold uppercase tracking-wider">Identificador Único Bancario</span>
+                            <span class="text-sm font-mono font-bold text-slate-800 block mb-3">#${tx.movBancario}</span>
+                            
+                            <span class="text-[9px] text-slate-400 block font-bold uppercase tracking-wider">Monto Recibido</span>
+                            <span class="text-2xl font-black text-slate-900 block">${formatCLP(tx.monto)}</span>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-200 text-slate-500 text-[10px]">
+                            Fecha Contable: <strong class="text-slate-700">${tx.fContable}</strong>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta de Relación Deudor-Pagador -->
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[9px] text-slate-400 block font-bold uppercase tracking-wider mb-2">Relación de Pago</span>
+                            <div class="space-y-3">
+                                <div>
+                                    <span class="text-[10px] text-slate-500 block">Deudor Asociado (Cliente Titular)</span>
+                                    <span class="font-bold text-slate-800 block">${tx.nombreCliente}</span>
+                                    <span class="font-mono text-[10px] text-slate-500">${tx.rutCliente}</span>
+                                </div>
+                                <div class="border-t border-slate-200/60 pt-2">
+                                    ${relaciónHTML}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta de Comentarios Operativos -->
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between">
+                        <div>
+                            <span class="text-[9px] text-slate-400 block font-bold uppercase tracking-wider mb-2">Historial de Operación</span>
+                            <div class="bg-white p-3 rounded border border-slate-200 min-h-[80px] text-slate-600 leading-relaxed text-[11px]">
+                                <strong>Detalle del Sistema:</strong> ${tx.comentario}
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center justify-between text-[10px] text-slate-500">
+                            <span>Conciliado por: <strong class="text-slate-700">${tx.usuarioConciliador}</strong></span>
+                            <span class="bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-bold">${tx.tipo}</span>
+                        </div>
+                    </div>
+
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function updateColumnsVisibility() {
+            Object.keys(columnsState).forEach(colKey => {
+                const isVisible = columnsState[colKey];
+                
+                // Buscar cabeceras y celdas
+                const elements = document.querySelectorAll(`.col-${colKey}, .th-${colKey}`);
+                elements.forEach(el => {
+                    if (isVisible) {
+                        el.classList.remove('hidden');
+                    } else {
+                        el.classList.add('hidden');
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
