@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conciliador Pro - Módulo de Cartola Bancaria</title>
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS CDN Oficial -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
+    <!-- Google Fonts - Inter y JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons CDN -->
+    <!-- Lucide Icons CDN Oficial -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
@@ -76,7 +76,7 @@
     <div class="flex flex-1 overflow-hidden">
         
         <!-- ========================================================= -->
-        <!-- SIDEBAR LATERAL NATIVO (Estilo capturas de pantalla)     -->
+        <!-- SIDEBAR LATERAL NATIVO                                   -->
         <!-- ========================================================= -->
         <aside class="w-64 bg-[#1e1e24] text-[#b5b5be] flex-shrink-0 flex flex-col border-r border-slate-800 hidden lg:flex">
             
@@ -241,22 +241,17 @@
                 <div class="bg-white rounded-lg shadow-sm border border-slate-200 mb-6 overflow-hidden">
                     
                     <!-- Gatillo / Encabezado de Colapso -->
-                    <button 
-                        id="btn-toggle-filters"
-                        class="w-full px-6 py-4 flex items-center justify-between bg-slate-50 hover:bg-slate-100/70 transition-colors border-b border-slate-200 text-left focus:outline-none"
-                    >
+                    <button id="btn-toggle-filters" class="w-full px-6 py-4 flex items-center justify-between bg-slate-50 hover:bg-slate-100/70 transition-colors border-b border-slate-200 text-left focus:outline-none">
                         <div class="flex items-center gap-2.5">
                             <i data-lucide="sliders" class="w-4 h-4 text-slate-500"></i>
                             <div>
                                 <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Filtros Avanzados y de Identificación</span>
-                                <span id="filter-badge" class="ml-3 text-[10px] bg-slate-200 text-slate-600 font-semibold px-2 py-0.5 rounded-full">
-                                    Búsqueda limpia
-                                </span>
+                                <span id="filter-badge" class="ml-3 text-[10px] bg-slate-200 text-slate-600 font-semibold px-2 py-0.5 rounded-full">Búsqueda limpia</span>
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
                             <span id="toggle-text" class="text-xs text-slate-500 font-semibold">Contraer Filtros</span>
-                            <i id="chevron-icon" data-lucide="chevron-down" class="w-4 h-4 text-slate-500 transition-transform duration-200 rotate-180"></i>
+                            <i data-lucide="chevron-down" id="chevron-icon" class="w-4 h-4 text-slate-500 transition-transform duration-200 rotate-180"></i>
                         </div>
                     </button>
 
@@ -269,32 +264,17 @@
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
                                     <div class="md:col-span-1">
                                         <label class="text-xs font-bold text-slate-700 block uppercase">RUT Cliente Titular:</label>
-                                        <input 
-                                            type="text" 
-                                            id="input-rut-cliente"
-                                            placeholder="Ej: 78857440-1"
-                                            class="mt-1 w-full p-2 border border-slate-300 rounded text-xs focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none font-mono"
-                                        />
+                                        <input type="text" id="input-rut-cliente" placeholder="Ej: 78857440-1" class="mt-1 w-full p-2 border border-slate-300 rounded text-xs focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 outline-none font-mono">
                                     </div>
                                     
                                     <div>
                                         <label class="text-xs font-bold text-slate-700 block uppercase">Fecha desde:</label>
-                                        <input 
-                                            type="text" 
-                                            value="01-05-2026" 
-                                            class="mt-1 w-full p-2 border border-slate-300 rounded text-xs bg-slate-50 text-slate-500 font-mono"
-                                            disabled
-                                        />
+                                        <input type="text" value="01-05-2026" class="mt-1 w-full p-2 border border-slate-300 rounded text-xs bg-slate-50 text-slate-500 font-mono" disabled>
                                     </div>
                                     
                                     <div>
                                         <label class="text-xs font-bold text-slate-700 block uppercase">Fecha hasta:</label>
-                                        <input 
-                                            type="text" 
-                                            value="31-05-2026" 
-                                            class="mt-1 w-full p-2 border border-slate-300 rounded text-xs bg-slate-50 text-slate-500 font-mono"
-                                            disabled
-                                        />
+                                        <input type="text" value="31-05-2026" class="mt-1 w-full p-2 border border-slate-300 rounded text-xs bg-slate-50 text-slate-500 font-mono" disabled>
                                     </div>
                                 </div>
 
@@ -304,11 +284,11 @@
                                     <div class="grid grid-cols-2 gap-4">
                                         <div>
                                             <label class="text-xs text-slate-600 block">Monto desde:</label>
-                                            <input type="text" placeholder="Ej: $100.000" class="mt-1 w-full p-2 border border-slate-300 rounded text-xs" />
+                                            <input type="text" placeholder="Ej: $100.000" class="mt-1 w-full p-2 border border-slate-300 rounded text-xs">
                                         </div>
                                         <div>
                                             <label class="text-xs text-slate-600 block">Monto hasta:</label>
-                                            <input type="text" placeholder="Ej: $5.000.000" class="mt-1 w-full p-2 border border-slate-300 rounded text-xs" />
+                                            <input type="text" placeholder="Ej: $5.000.000" class="mt-1 w-full p-2 border border-slate-300 rounded text-xs">
                                         </div>
                                     </div>
 
@@ -333,7 +313,7 @@
 
                             </div>
 
-                            <!-- Bloque Central e Izquierdo: Gestión Operativa -->
+                            <!-- Bloque Central y Derecho: Gestión Operativa -->
                             <div class="xl:col-span-2 space-y-4">
                                 <div class="flex justify-between items-center pb-2 border-b border-dashed border-slate-200">
                                     <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Gestión Operativa</h4>
@@ -345,10 +325,7 @@
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <div>
                                         <label class="text-xs font-bold text-slate-700 block uppercase">Estado Conciliación:</label>
-                                        <select 
-                                            id="select-estado-conciliado"
-                                            class="mt-1 w-full p-2 border border-slate-300 rounded text-xs bg-white"
-                                        >
+                                        <select id="select-estado-conciliado" class="mt-1 w-full p-2 border border-slate-300 rounded text-xs bg-white">
                                             <option value="Todos">Todos</option>
                                             <option value="Conciliado">Conciliado</option>
                                             <option value="No Conciliado">No Conciliado / Sin Match</option>
@@ -369,10 +346,7 @@
                                         <label class="text-xs font-bold text-slate-850 block uppercase flex items-center gap-1">
                                             <span>Origen del Pago:</span>
                                         </label>
-                                        <select 
-                                            id="select-origen-pago"
-                                            class="mt-1 w-full p-2 border border-emerald-300 bg-emerald-50/20 rounded text-xs font-semibold text-slate-700 focus:outline-none focus:ring-1 focus:ring-emerald-500"
-                                        >
+                                        <select id="select-origen-pago" class="mt-1 w-full p-2 border border-slate-300 rounded text-xs text-slate-700 bg-white focus:outline-none focus:ring-1 focus:ring-emerald-500">
                                             <option value="todos">Todos los Orígenes</option>
                                             <option value="solo_titulares">Solo Titulares (Directo)</option>
                                             <option value="solo_terceros">Solo Terceros Pagadores (Asociados)</option>
@@ -399,17 +373,16 @@
                                         </select>
                                     </div>
 
-                                    <!-- CAMPO NATIVO: RUT Tercero Pagador -->
-                                    <div class="bg-slate-50/50 p-2 rounded-lg border border-slate-200">
-                                        <label class="text-xs font-bold text-slate-800 block uppercase">
-                                            RUT Tercero Pagador:
+                                    <!-- CAMBIO 1: Desplegable de SI/NO en lugar de RUT Tercero Pagador -->
+                                    <div class="bg-emerald-50/20 p-2 rounded-lg border border-emerald-300/50">
+                                        <label class="text-xs font-bold text-slate-800 block">
+                                            3er PAGADOR:
                                         </label>
-                                        <input 
-                                            type="text" 
-                                            id="input-rut-tercero"
-                                            placeholder="Buscar por RUT pagador..."
-                                            class="mt-1 w-full p-1.5 border border-slate-300 rounded text-xs outline-none focus:ring-1 focus:ring-emerald-500 bg-white font-mono"
-                                        />
+                                        <select id="select-tiene-tercero" class="mt-1 w-full p-1.5 border border-slate-300 rounded text-xs outline-none bg-white font-medium focus:ring-1 focus:ring-emerald-500 text-slate-800">
+                                            <option value="todos">Todos</option>
+                                            <option value="si">SI</option>
+                                            <option value="no">NO</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -419,16 +392,10 @@
 
                         <!-- Botonera del Buscador -->
                         <div class="flex justify-end gap-3 mt-6 pt-4 border-t border-slate-200">
-                            <button 
-                                id="btn-limpiar"
-                                class="px-5 py-2 border border-slate-300 text-slate-600 rounded font-bold text-xs hover:bg-slate-50 transition-colors uppercase"
-                            >
+                            <button id="btn-limpiar" class="px-5 py-2 border border-slate-300 text-slate-600 rounded font-bold text-xs hover:bg-slate-50 transition-colors uppercase">
                                 Limpiar Filtros
                             </button>
-                            <button 
-                                id="btn-buscar"
-                                class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded font-bold text-xs shadow-sm transition-colors uppercase tracking-wider"
-                            >
+                            <button id="btn-buscar" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded font-bold text-xs shadow-sm transition-colors uppercase tracking-wider">
                                 Aplicar Búsqueda
                             </button>
                         </div>
@@ -444,9 +411,7 @@
                     <div class="p-4 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-4">
                         <div class="flex items-center gap-2">
                             <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Cartola de Movimientos Bancarios</span>
-                            <span id="table-count-badge" class="bg-slate-200 text-slate-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
-                                8 Registros
-                            </span>
+                            <span id="table-count-badge" class="bg-slate-200 text-slate-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full">8 Registros</span>
                         </div>
 
                         <!-- Herramientas de Exportación -->
@@ -463,51 +428,45 @@
 
                             <!-- Menú de Columnas -->
                             <div class="relative">
-                                <button 
-                                    id="btn-column-dropdown"
-                                    class="p-1.5 bg-white border border-slate-200 hover:bg-slate-50 rounded flex items-center gap-1.5 text-xs text-slate-700 font-medium shadow-sm transition-colors"
-                                >
+                                <button id="btn-column-dropdown" class="p-1.5 bg-white border border-slate-200 hover:bg-slate-50 rounded flex items-center gap-1.5 text-xs text-slate-700 font-medium shadow-sm transition-colors">
                                     <i data-lucide="columns" class="w-4 h-4 text-slate-400"></i>
                                     <span>Configurar Columnas</span>
                                     <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400"></i>
                                 </button>
 
-                                <div 
-                                    id="column-dropdown-menu" 
-                                    class="absolute right-0 mt-1 w-60 bg-white border border-slate-200 rounded-lg shadow-lg z-30 p-3 text-xs text-slate-700 space-y-2 hidden"
-                                >
+                                <div id="column-dropdown-menu" class="absolute right-0 mt-1 w-60 bg-white border border-slate-200 rounded-lg shadow-lg z-30 p-3 text-xs text-slate-700 space-y-2 hidden">
                                     <div class="font-bold pb-2 border-b border-slate-100 flex justify-between items-center">
                                         <span>Columnas Activas</span>
                                         <button id="btn-close-cols" class="text-[10px] text-blue-600 font-bold hover:underline">Listo</button>
                                     </div>
                                     
                                     <label class="flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-50 rounded">
-                                        <input type="checkbox" id="col-fMovimiento" checked class="rounded text-emerald-500 focus:ring-emerald-500" />
+                                        <input type="checkbox" id="col-fMovimiento" checked class="rounded text-emerald-500 focus:ring-emerald-500">
                                         <span>F. Movimiento</span>
                                     </label>
 
                                     <label class="flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-50 rounded">
-                                        <input type="checkbox" id="col-detalle" checked class="rounded text-emerald-500 focus:ring-emerald-500" />
+                                        <input type="checkbox" id="col-detalle" checked class="rounded text-emerald-500 focus:ring-emerald-500">
                                         <span>Glosa Banco</span>
                                     </label>
 
                                     <label class="flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-50 rounded">
-                                        <input type="checkbox" id="col-movBancario" checked class="rounded text-emerald-500 focus:ring-emerald-500" />
+                                        <input type="checkbox" id="col-movBancario" checked class="rounded text-emerald-500 focus:ring-emerald-500">
                                         <span>Mov. Bancario</span>
                                     </label>
 
                                     <label class="flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-50 rounded">
-                                        <input type="checkbox" id="col-transaccion" checked class="rounded text-emerald-500 focus:ring-emerald-500" />
+                                        <input type="checkbox" id="col-transaccion" checked class="rounded text-emerald-500 focus:ring-emerald-500">
                                         <span>Transacción ID</span>
                                     </label>
 
                                     <label class="flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-50 rounded">
-                                        <input type="checkbox" id="col-usuarioConciliador" checked class="rounded text-emerald-500 focus:ring-emerald-500" />
+                                        <input type="checkbox" id="col-usuarioConciliador" checked class="rounded text-emerald-500 focus:ring-emerald-500">
                                         <span>Operador Conciliador</span>
                                     </label>
 
                                     <label class="flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-50 rounded">
-                                        <input type="checkbox" id="col-tipo" checked class="rounded text-emerald-500 focus:ring-emerald-500" />
+                                        <input type="checkbox" id="col-tipo" checked class="rounded text-emerald-500 focus:ring-emerald-500">
                                         <span>Tipo Conciliación</span>
                                     </label>
                                 </div>
@@ -523,9 +482,12 @@
                                     <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap">Cta. Bancaria</th>
                                     <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap th-fMovimiento">F. Movimiento <i data-lucide="arrow-up-down" class="inline w-3 h-3 text-slate-400"></i></th>
                                     <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap">F. Contable</th>
-                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] text-right whitespace-nowrap" align="center">Monto</th>
-                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap th-detalle" align="center">RUT</th>
-                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap bg-emerald-50/55 text-slate-900 font-bold">RUT Asociado / Deudor</th>
+                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] text-right whitespace-nowrap">Monto</th>
+                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap th-detalle">Glosa Banco</th>
+                                    
+                                    <!-- CAMBIO 2: Cambiado encabezado a "3er Pagador" y estilización con fondo para destacar -->
+                                    <th class="py-3 px-4 border-r border-slate-200 text-[11px] text-center whitespace-nowrap bg-indigo-50 text-indigo-950 font-bold normal-case tracking-wide">3er PAGADOR</th>
+                                    
                                     <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap th-movBancario">Mov. Bancario</th>
                                     <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap th-transaccion">Transacción ID</th>
                                     <th class="py-3 px-4 border-r border-slate-200 text-[11px] whitespace-nowrap th-usuarioConciliador">Conciliador</th>
@@ -535,16 +497,14 @@
                                 </tr>
                             </thead>
                             <tbody id="table-body" class="text-xs text-slate-600 divide-y divide-slate-100 bg-white">
-                                <!-- Filas dinámicas generadas mediante JS -->
+                                <!-- Se llena dinámicamente desde JS para asegurar consistencia del estado -->
                             </tbody>
                         </table>
                     </div>
 
                     <!-- Paginador -->
                     <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
-                        <div id="pagination-text">
-                            Mostrando registros del 1 al 8.
-                        </div>
+                        <div id="pagination-text">Mostrando registros del 1 al 8 de un total de 8.</div>
                         <div class="flex gap-1">
                             <button class="px-2.5 py-1 border border-slate-200 rounded bg-white text-slate-400 cursor-not-allowed">Anterior</button>
                             <button class="px-3 py-1 border border-emerald-500 rounded bg-emerald-500 text-slate-950 font-bold">1</button>
@@ -556,18 +516,19 @@
             </div>
 
             <!-- ========================================================= -->
-            <!-- PANEL DE AUDITORÍA DETALLADA                              -->
+            <!-- PANEL DE AUDITORÍA DETALLADA (UX Reforzada para compensar) -->
+            <!-- ========================================================= -->
             <div class="mt-6 bg-white p-5 rounded-lg border border-slate-200 shadow-sm">
                 <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center gap-2">
                     <i data-lucide="file-text" class="w-4 h-4 text-slate-400"></i>
-                    Auditoría y Trazabilidad de Movimientos Bancarios
+                    Auditoría y Trazabilidad de Movimientos Bancarios (Ficha Técnica Integrada)
                 </h4>
 
                 <div id="audit-panel-container">
                     <!-- Se llena dinámicamente según la fila seleccionada -->
                     <div class="text-center py-6 text-slate-400 bg-slate-50 rounded-lg border border-slate-150 text-xs">
                         <i data-lucide="help-circle" class="w-8 h-8 text-slate-300 mx-auto mb-2"></i>
-                        <span>Selecciona una fila de la tabla o haz clic en "Ver" para desplegar la trazabilidad técnica de fondos.</span>
+                        <span>Selecciona una fila de la tabla o haz clic en "Ver" para desplegar la trazabilidad técnica y datos de Terceros Pagadores.</span>
                     </div>
                 </div>
             </div>
@@ -576,7 +537,7 @@
     </div>
 
     <!-- ========================================================= -->
-    <!-- LÓGICA JAVASCRIPT DE LA DEMO                              -->
+    <!-- LÓGICA JAVASCRIPT DE LA PLATAFORMA                        -->
     <!-- ========================================================= -->
     <script>
         // --- DATA DE LA DEMO ---
@@ -599,7 +560,7 @@
                 tipo: "CONCILIACIÓN POR USUARIO",
                 deudasPendientes: 0,
                 codTransportista: "7038531",
-                comentario: "Pago regular vía transferencia directa"
+                comentario: "Pago regular vía transferencia directa sin intermediación de terceros."
             },
             {
                 id: 2,
@@ -619,7 +580,7 @@
                 tipo: "CONCILIACIÓN AUTOMÁTICA",
                 deudasPendientes: 9,
                 codTransportista: "7040458",
-                comentario: "Tercero pagador consolidado por holding de empresas"
+                comentario: "Tercero pagador consolidado por holding de empresas (Inversiones El Roble)."
             },
             {
                 id: 3,
@@ -639,7 +600,7 @@
                 tipo: "CONCILIACIÓN AUTOMÁTICA",
                 deudasPendientes: 9,
                 codTransportista: "7040590",
-                comentario: "Pago calzado por monto exacto"
+                comentario: "Pago calzado por monto exacto realizado por el mismo titular."
             },
             {
                 id: 4,
@@ -659,7 +620,7 @@
                 tipo: "CONCILIACIÓN AUTOMÁTICA",
                 deudasPendientes: 9,
                 codTransportista: "7040590",
-                comentario: "Pago de factura mediante RUT de contador o tercero"
+                comentario: "Pago de factura mediante RUT del tercero (Asesorías Contables Rentas S.A.)."
             },
             {
                 id: 5,
@@ -679,7 +640,7 @@
                 tipo: "--",
                 deudasPendientes: 0,
                 codTransportista: "--",
-                comentario: "Diferencia menor en tipo de cambio"
+                comentario: "Diferencia menor en tipo de cambio. Requiere auditoría manual."
             },
             {
                 id: 6,
@@ -699,7 +660,7 @@
                 tipo: "--",
                 deudasPendientes: 2,
                 codTransportista: "--",
-                comentario: "Pago de flete realizado por transportista asociado"
+                comentario: "Pago de flete pendiente. Intentado por transportista asociado, pero sin conciliación final."
             },
             {
                 id: 7,
@@ -719,7 +680,7 @@
                 tipo: "--",
                 deudasPendientes: 0,
                 codTransportista: "--",
-                comentario: "Abono menor sin registrar en deudas"
+                comentario: "Abono menor sin registrar en deudas activas."
             },
             {
                 id: 8,
@@ -739,7 +700,7 @@
                 tipo: "CONCILIACIÓN POR USUARIO",
                 deudasPendientes: 1,
                 codTransportista: "7038112",
-                comentario: "Beca / Pago de tercero por colegiatura"
+                comentario: "Beca institucional / Pago de tercero realizado por la Sociedad Educacional del Maipo."
             }
         ];
 
@@ -765,7 +726,7 @@
         const filterBadge = document.getElementById('filter-badge');
 
         const inputRutCliente = document.getElementById('input-rut-cliente');
-        const inputRutTercero = document.getElementById('input-rut-tercero');
+        const selectTieneTercero = document.getElementById('select-tiene-tercero'); // Nuevo desplegable SI/NO
         const selectEstadoConciliado = document.getElementById('select-estado-conciliado');
         const selectOrigenPago = document.getElementById('select-origen-pago');
 
@@ -793,7 +754,6 @@
             // Buscador e inputs
             btnBuscar.addEventListener('click', () => {
                 applyFilters();
-                // Opcional: Colapsar tras buscar para optimizar espacio en pantallas pequeñas
                 if (window.innerWidth < 1280) {
                     toggleSearchPanel();
                 }
@@ -848,7 +808,7 @@
 
         function clearFilters() {
             inputRutCliente.value = '';
-            inputRutTercero.value = '';
+            selectTieneTercero.value = 'todos';
             selectEstadoConciliado.value = 'Todos';
             selectOrigenPago.value = 'todos';
             selectedRowId = null;
@@ -861,14 +821,14 @@
 
         function applyFilters() {
             const rutClienteVal = inputRutCliente.value.trim().toLowerCase();
-            const rutTerceroVal = inputRutTercero.value.trim().toLowerCase();
+            const tieneTerceroVal = selectTieneTercero.value; // 'todos', 'si', 'no'
             const estadoConciliadoVal = selectEstadoConciliado.value;
             const origenPagoVal = selectOrigenPago.value;
 
             // Calcular conteo de filtros activos
             let activeCount = 0;
             if (rutClienteVal) activeCount++;
-            if (rutTerceroVal) activeCount++;
+            if (tieneTerceroVal !== 'todos') activeCount++;
             if (estadoConciliadoVal !== 'Todos') activeCount++;
             if (origenPagoVal !== 'todos') activeCount++;
 
@@ -883,15 +843,26 @@
 
             // Filtrar Array
             const filtered = INITIAL_TRANSACTIONS.filter(item => {
+                // Filtro por RUT Cliente
                 if (rutClienteVal && !item.rutCliente.toLowerCase().includes(rutClienteVal)) {
                     return false;
                 }
-                if (rutTerceroVal && (!item.rutTercero || !item.rutTercero.toLowerCase().includes(rutTerceroVal))) {
-                    return false;
+                
+                // Condición técnica obligatoria: Para usar filtro de "Tercer Pagador", la transacción debe estar previamente conciliada.
+                const isConciliated = item.transaccion !== 'SIN MATCH';
+                if (tieneTerceroVal === 'si') {
+                    // Solo conciliadas que sean de Tercero
+                    if (!isConciliated || !item.esTercero) return false;
+                } else if (tieneTerceroVal === 'no') {
+                    // Solo conciliadas que NO sean de Tercero
+                    if (!isConciliated || item.esTercero) return false;
                 }
+
+                // Origen de Pago
                 if (origenPagoVal === 'solo_terceros' && !item.esTercero) return false;
                 if (origenPagoVal === 'solo_titulares' && item.esTercero) return false;
 
+                // Estado de Conciliación
                 if (estadoConciliadoVal === 'Conciliado' && item.transaccion === 'SIN MATCH') return false;
                 if (estadoConciliadoVal === 'No Conciliado' && item.transaccion !== 'SIN MATCH') return false;
 
@@ -925,9 +896,9 @@
 
             data.forEach(tx => {
                 const tr = document.createElement('tr');
-                tr.className = `hover:bg-slate-50/85 transition-colors cursor-pointer border-b border-slate-100 ${selectedRowId === tx.id ? 'bg-blue-50/60 border-l-4 border-l-blue-600' : ''}`;
+                tr.className = `hover:bg-slate-50/85 transition-colors cursor-pointer border-b border-slate-100 ${selectedRowId === tx.id ? 'bg-blue-50/80 border-l-4 border-l-blue-600 font-medium' : ''}`;
                 
-                // Escuchador de clics en la fila para auditar
+                // Escuchador de clics en la fila para auditoría de trazabilidad
                 tr.addEventListener('click', () => {
                     selectRow(tx.id);
                 });
@@ -955,35 +926,31 @@
                     ? `<span class="bg-rose-50 text-rose-700 text-[10px] px-2 py-0.5 rounded font-bold uppercase border border-rose-200">Sin Match</span>`
                     : `<span class="font-mono text-slate-600 text-[11px] block truncate max-w-[110px]">${tx.transaccion}</span>`;
 
-                // Render de la Propuesta Integradora (Celda Dual)
-                let cellDualRUT = '';
-                if (tx.esTercero) {
-                    cellDualRUT = `
-                        <div class="flex items-center gap-1.5">
-                            <span class="font-mono font-bold text-slate-900">${tx.rutCliente}</span>
-                            <span class="bg-purple-100 text-purple-700 text-[9px] px-1.5 py-0.5 rounded-md font-bold border border-purple-200 flex items-center gap-0.5 shadow-sm uppercase tracking-tight">
-                                <i data-lucide="briefcase" class="w-2.5 h-2.5"></i>
-                                Tercero
-                            </span>
+                // CAMBIO 2: Lógica condicional para 3er Pagador (Solo en transacciones conciliadas). 
+                // En transacciones no conciliadas ("SIN MATCH"), se muestra un guion limpio "--".
+                let cell3erPagadorHTML = '';
+                const isConciliated = tx.transaccion !== 'SIN MATCH';
+                if (!isConciliated) {
+                    cell3erPagadorHTML = `
+                        <div class="text-center">
+                            <span class="text-slate-400 font-mono text-xs">--</span>
                         </div>
-                        <div class="mt-1 bg-purple-50/50 p-1 rounded border border-purple-100">
-                            <div class="text-[10px] text-purple-950 font-bold flex items-center gap-1">
-                                <span class="text-[8px] text-purple-500 uppercase font-black">Pagado por:</span> 
-                                <span class="font-mono">${tx.rutTercero}</span>
-                            </div>
-                            <div class="text-[9px] text-purple-700 truncate max-w-[190px]">
-                                ${tx.nombreTercero}
-                            </div>
+                    `;
+                } else if (tx.esTercero) {
+                    cell3erPagadorHTML = `
+                        <div class="text-center">
+                            <span class="inline-flex items-center justify-center px-3 py-1 bg-purple-100 text-purple-800 text-xs font-black rounded-full border border-purple-200 shadow-sm">
+                                SI
+                            </span>
                         </div>
                     `;
                 } else {
-                    cellDualRUT = `
-                        <div class="flex items-center gap-1.5">
-                            <span class="font-mono font-bold text-slate-900">${tx.rutCliente}</span>
+                    cell3erPagadorHTML = `
+                        <div class="text-center">
+                            <span class="inline-flex items-center justify-center px-3 py-1 bg-slate-100 text-slate-500 text-xs font-medium rounded-full border border-slate-200">
+                                NO
+                            </span>
                         </div>
-                        <span class="text-[10px] text-slate-400 block truncate max-w-[190px]">
-                            ${tx.nombreCliente} (Titular)
-                        </span>
                     `;
                 }
 
@@ -994,7 +961,10 @@
                     <td class="py-3.5 px-4 text-slate-500 whitespace-nowrap font-mono">${tx.fContable}</td>
                     <td class="py-3.5 px-4 font-bold text-slate-900 text-right whitespace-nowrap">${formatCLP(tx.monto)}</td>
                     <td class="py-3.5 px-4 font-mono text-slate-500 whitespace-nowrap col-detalle">${tx.detalle}</td>
-                    <td class="py-3.5 px-4 bg-emerald-50/10">${cellDualRUT}</td>
+                    
+                    <!-- Celda de 3er Pagador (SI / NO / --) -->
+                    <td class="py-3.5 px-4 bg-indigo-50/30 border-r border-slate-200">${cell3erPagadorHTML}</td>
+                    
                     <td class="py-3.5 px-4 font-mono text-slate-500 whitespace-nowrap text-xs col-movBancario">${tx.movBancario}</td>
                     <td class="py-3.5 px-4 whitespace-nowrap col-transaccion">${transaccionHTML}</td>
                     <td class="py-3.5 px-4 text-slate-600 font-medium whitespace-nowrap col-usuarioConciliador">${tx.usuarioConciliador}</td>
@@ -1005,8 +975,8 @@
                         </span>
                     </td>
                     <td class="py-3.5 px-4 text-center">
-                        <button class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded text-[10px] transition-all flex items-center gap-1 mx-auto border border-slate-200">
-                            <i data-lucide="eye" class="w-3 h-3 text-slate-500"></i>
+                        <button class="px-2.5 py-1 bg-indigo-500 hover:bg-indigo-600 text-white font-bold rounded text-[10px] transition-all flex items-center gap-1 mx-auto shadow-sm">
+                            <i data-lucide="eye" class="w-3 h-3 text-white"></i>
                             <span>Ver</span>
                         </button>
                     </td>
@@ -1021,11 +991,9 @@
         function selectRow(id) {
             selectedRowId = id;
             
-            // Re-renderizar filas para actualizar el estilo "Selected"
+            // Re-renderizar filas para actualizar el estado visual de selección
             const rows = tableBody.querySelectorAll('tr');
-            const dataFiltered = INITIAL_TRANSACTIONS; // Para simplificar
-            
-            applyFilters(); // Esto re-renderizará con el row activo seleccionado.
+            applyFilters(); 
             renderAuditPanel(id);
         }
 
@@ -1034,7 +1002,7 @@
                 auditPanelContainer.innerHTML = `
                     <div class="text-center py-6 text-slate-400 bg-slate-50 rounded-lg border border-slate-150 text-xs">
                         <i data-lucide="help-circle" class="w-8 h-8 text-slate-300 mx-auto mb-2"></i>
-                        <span>Selecciona una fila de la tabla o haz clic en "Ver" para desplegar la trazabilidad técnica de fondos.</span>
+                        <span>Selecciona una fila de la tabla o haz clic en "Ver" para desplegar la trazabilidad técnica y datos de Terceros Pagadores.</span>
                     </div>
                 `;
                 lucide.createIcons();
@@ -1044,67 +1012,107 @@
             const tx = INITIAL_TRANSACTIONS.find(t => t.id === id);
             if (!tx) return;
 
-            const relaciónHTML = tx.esTercero 
+            // Estructuración de la relación de pago de forma muy explícita para la trazabilidad operativa
+            const relacionHTML = tx.esTercero 
                 ? `
-                    <span class="text-[10px] text-purple-700 font-bold block flex items-center gap-1">
-                        ⚠️ Pagado por Tercero (Pagador Externo)
-                    </span>
-                    <span class="font-bold text-slate-800 block">${tx.nombreTercero}</span>
-                    <span class="font-mono text-[10px] text-slate-500 block">RUT: ${tx.rutTercero}</span>
+                    <div class="bg-purple-50 p-3 rounded-lg border border-purple-200 space-y-2">
+                        <div class="flex items-center gap-1.5 text-purple-950 font-black text-[10px] uppercase tracking-wide">
+                            <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+                            3er Pagador Activo Detectado
+                        </div>
+                        <div>
+                            <span class="text-[9px] text-purple-600 block uppercase font-bold">Razón Social Tercero:</span>
+                            <span class="font-bold text-slate-900 text-xs">${tx.nombreTercero}</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 border-t border-purple-200/50 pt-2">
+                            <div>
+                                <span class="text-[9px] text-purple-600 block uppercase font-bold">RUT Tercero:</span>
+                                <span class="font-mono text-slate-800 font-bold">${tx.rutTercero}</span>
+                            </div>
+                            <div>
+                                <span class="text-[9px] text-purple-600 block uppercase font-bold">Relación Contable:</span>
+                                <span class="text-slate-800 font-semibold">Tercer Pagador Asociado</span>
+                            </div>
+                        </div>
+                    </div>
                 `
                 : `
-                    <span class="text-[10px] text-slate-500 block font-bold uppercase tracking-wider">
-                        👤 Pagado Directamente por el Cliente
-                    </span>
-                    <span class="font-bold text-slate-800 block">${tx.nombreCliente}</span>
-                    <span class="font-mono text-[10px] text-slate-500 block">RUT: ${tx.rutCliente}</span>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-2">
+                        <div class="flex items-center gap-1.5 text-slate-700 font-bold text-[10px] uppercase tracking-wide">
+                            <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                            Pago Directo / Titular
+                        </div>
+                        <div>
+                            <span class="text-[9px] text-slate-500 block uppercase font-bold">Cliente Titular:</span>
+                            <span class="font-bold text-slate-800 text-xs">${tx.nombreCliente}</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 border-t border-slate-200/50 pt-2">
+                            <div>
+                                <span class="text-[9px] text-slate-500 block uppercase font-bold">RUT Cliente:</span>
+                                <span class="font-mono text-slate-700 font-semibold">${tx.rutCliente}</span>
+                            </div>
+                            <div>
+                                <span class="text-[9px] text-slate-500 block uppercase font-bold">Canal:</span>
+                                <span class="text-slate-700 font-medium">Banca Línea Directa</span>
+                            </div>
+                        </div>
+                    </div>
                 `;
 
             auditPanelContainer.innerHTML = `
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 text-xs animate-fadeIn">
                     
                     <!-- Tarjeta de Resumen General -->
-                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between">
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between shadow-sm">
                         <div>
-                            <span class="text-[9px] text-slate-400 block font-bold uppercase tracking-wider">Identificador Único Bancario</span>
-                            <span class="text-sm font-mono font-bold text-slate-800 block mb-3">#${tx.movBancario}</span>
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <span class="text-[9px] text-slate-400 block font-bold uppercase tracking-wider">ID Movimiento Bancario</span>
+                                    <span class="text-sm font-mono font-bold text-slate-800 block">#${tx.movBancario}</span>
+                                </div>
+                                <span class="bg-indigo-100 text-indigo-800 text-[9px] font-bold px-2 py-0.5 rounded uppercase">Cta: ${tx.ctaBancaria}</span>
+                            </div>
                             
-                            <span class="text-[9px] text-slate-400 block font-bold uppercase tracking-wider">Monto Recibido</span>
+                            <span class="text-[9px] text-slate-400 block font-bold uppercase tracking-wider mt-2">Monto Registrado en Cartola</span>
                             <span class="text-2xl font-black text-slate-900 block">${formatCLP(tx.monto)}</span>
                         </div>
-                        <div class="mt-4 pt-3 border-t border-slate-200 text-slate-500 text-[10px]">
-                            Fecha Contable: <strong class="text-slate-700">${tx.fContable}</strong>
+                        <div class="mt-4 pt-3 border-t border-slate-200 text-slate-500 text-[10px] flex justify-between">
+                            <span>Fecha Contable: <strong class="text-slate-700">${tx.fContable}</strong></span>
+                            <span>Glosa: <strong class="text-slate-700 font-mono">${tx.detalle}</strong></span>
                         </div>
                     </div>
 
                     <!-- Tarjeta de Relación Deudor-Pagador -->
-                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between">
-                        <div>
-                            <span class="text-[9px] text-slate-400 block font-bold uppercase tracking-wider mb-2">Relación de Pago</span>
-                            <div class="space-y-3">
-                                <div>
-                                    <span class="text-[10px] text-slate-500 block">Deudor Asociado (Cliente Titular)</span>
-                                    <span class="font-bold text-slate-800 block">${tx.nombreCliente}</span>
-                                    <span class="font-mono text-[10px] text-slate-500">${tx.rutCliente}</span>
-                                </div>
-                                <div class="border-t border-slate-200/60 pt-2">
-                                    ${relaciónHTML}
+                    <div class="bg-white p-4 rounded-lg border border-indigo-200 flex flex-col justify-between shadow-sm">
+                        <div class="space-y-3">
+                            <span class="text-[9px] text-indigo-900 block font-extrabold uppercase tracking-wider border-b border-indigo-100 pb-1">Trazabilidad de Fondos</span>
+                            
+                            <!-- Información del Deudor Titular -->
+                            <div>
+                                <span class="text-[9px] text-slate-400 block uppercase font-bold">Cliente Deudor Titular:</span>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-slate-800">${tx.nombreCliente}</span>
+                                    <span class="font-mono text-[10px] bg-slate-100 px-1.5 py-0.5 rounded text-slate-600 font-semibold">${tx.rutCliente}</span>
                                 </div>
                             </div>
+
+                            <!-- Relación Dinámica (Tercero / Directo) -->
+                            ${relacionHTML}
                         </div>
                     </div>
 
                     <!-- Tarjeta de Comentarios Operativos -->
-                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between">
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col justify-between shadow-sm">
                         <div>
-                            <span class="text-[9px] text-slate-400 block font-bold uppercase tracking-wider mb-2">Historial de Operación</span>
-                            <div class="bg-white p-3 rounded border border-slate-200 min-h-[80px] text-slate-600 leading-relaxed text-[11px]">
-                                <strong>Detalle del Sistema:</strong> ${tx.comentario}
+                            <span class="text-[9px] text-slate-400 block font-bold uppercase tracking-wider mb-2">Historial y Regla de Operación</span>
+                            <div class="bg-white p-3 rounded border border-slate-200 min-h-[80px] text-slate-600 leading-relaxed text-[11px] shadow-inner">
+                                <strong class="text-indigo-900 block text-[10px] mb-1">Comentario del Sistema:</strong> 
+                                ${tx.comentario}
                             </div>
                         </div>
                         <div class="mt-4 flex items-center justify-between text-[10px] text-slate-500">
-                            <span>Conciliado por: <strong class="text-slate-700">${tx.usuarioConciliador}</strong></span>
-                            <span class="bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-bold">${tx.tipo}</span>
+                            <span>Operador: <strong class="text-slate-700">${tx.usuarioConciliador}</strong></span>
+                            <span class="bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-bold text-[9px] uppercase">${tx.tipo}</span>
                         </div>
                     </div>
 
@@ -1129,5 +1137,6 @@
             });
         }
     </script>
+
 </body>
 </html>
